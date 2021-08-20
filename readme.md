@@ -7,8 +7,7 @@ The assignment should take no longer than 1-2 hours to complete. Try to complete
 1. Create a private repository on GitHub
 2. Clone this repository locally in the regular way
 3. Change the `origin` remote url to your private repository and push
-4. Add `florisvink` and `bvangraafeiland` as collaborators to your repository
-5. Install dependencies using `yarn`
+4. Install dependencies using `yarn`
 
 The application can then be started with `yarn dev`. This starts the NextJS development server on http://localhost:3000.
 
