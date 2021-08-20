@@ -1,5 +1,5 @@
 # Edsson code assignment
-Hello! To get a feeling for your current skills regarding our frontend stack, you've been requested to do this assignment. If you came across this repository by chance, please see [the vacancy](https://www.edsson.com/en/jobs/vacancy?id=senior-front-end-developer) first.
+Hello! To get a feeling for your current skills regarding our frontend stack, you've been requested to do this assignment.
 
 The assignment should take no longer than 1-2 hours to complete. Try to complete everything within this time, getting it to work first, then make it better if you have some time left.
 
