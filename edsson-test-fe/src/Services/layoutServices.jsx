@@ -11,11 +11,21 @@ class LayoutServices extends Component {
             type: "",
             fieldId: "",
             actionType: "",
-            label: ""
+            label: "",
           }]
         }]
       }
     },
+    isFetchingDocDef: false,
+    dataDocDef: {
+      fields: [{
+        _id: "",
+        label: "",
+        name: "",
+        type: "",
+        maxLength: 0
+      }]
+    }
   }
   // constructor(props) {
   //   super(props);
@@ -52,19 +62,34 @@ class LayoutServices extends Component {
         });
       });
   }
+  getListDocumentDefine() {
+    axios.get(`http://127.0.0.1:3001/api/modelling/document-definitions`)
+      .then(res => {
+        let datas = res.data;
+        this.setState({
+          isFetchingDocDefg: true,
+          dataDocDef: datas,
+        });
+      })
+      .catch(error => {
+        this.setState({
+          isFetchingDocDefg: false,
+          error,
+        });
+      });
+  }
 
-  
-  renderFeild(type) {
-    console.log(`type`, type)
-    if (type === 'field') {
+
+  renderFeild(colObject) {
+    console.log(`colObject`, colObject)
+    if (colObject.type === 'field') {
       return (
-          <div>type</div>
-          
+        <div>colObject.type</div>
       )
-    } else {
+    } else {  
       return (
         <div>
-          {/* <input type={type}> hahahah</input> */}
+          <input type={colObject.type} id="btnType" value={colObject.label}></input>
         </div>
       );
     }
@@ -73,13 +98,12 @@ class LayoutServices extends Component {
 
   async componentDidMount() {
     await this.getListLayout();
+    await this.getListDocumentDefine();
   }
 
 
   render() {
     const { error, isFetching, data } = this.state;
-    // console.log(data);
-    // console.log(data.header.rows[0]);
     if (error) {
       return <span>Can not get layput data: {error.message}</span>;
     } else if (!isFetching) {
@@ -89,13 +113,12 @@ class LayoutServices extends Component {
       return (
         <div>
           {
-            data.header.rows.map((rowsCol, index) => 
-                rowsCol.columns.map((rowsColItem) => 
-                  this.renderFeild(rowsColItem.type)
-                )
+            data.header.rows.map((rowsCol, index) =>
+              rowsCol.columns.map((rowsColItem) =>
+                this.renderFeild(rowsColItem)
+              )
             )
           }
-          <div>asdasd</div>
         </div>
       );
     }
